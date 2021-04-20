@@ -70,6 +70,13 @@ a:hover {
   opacity: 1;
 }
 
+.button-h2:hover {
+  background-color: transparent;
+  color: #001641;
+  opacity: 1;
+  transition-property: background-color, color;
+}
+
 .transparent {
   background-color: transparent;
   border: none;
@@ -99,4 +106,76 @@ a:hover {
   border-radius: 7px;
   margin-top: 40px;
   padding: 20px 50px;
+}
+
+.rmv_mb {
+  margin-bottom: 0;
+  padding-bottom: 60px;
+}
+
+.vert-c {
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.bg-form {
+  background-color: #e9ecef;
+  width: fit-content;
+  padding: 25px 40px 18px 30px;
+  border-radius: 21px 21px 0 0;
+  /* border-bottom: 10px solid #ff3401; */
+  border-bottom: 6px solid #717788;
+}
+
+.login-fb2 {
+  flex-basis: 55%;
+  background: #001641;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.login-fb1 {
+  flex-basis: 45%;
+  background-color: #e9ecef;
+  position: relative;
+}
+
+.waves {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.z-1 {
+  position: relative;
+  z-index: 2;
+}
+
+#wave {
+  transform: rotateY(180deg);
+  width: 50%;
+}
+
+#wave2 {
+  left: 340px;
+  width: 50%;
+}
+
+.admin-title {
+  background-color: #001641;
+  color: #f8f9fa;
+  width: fit-content;
+  margin: auto;
+  margin-top: 40px;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.footer {
+  position: relative;
+  padding: initial 1.5rem;
 }

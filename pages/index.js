@@ -27,7 +27,7 @@ export default function Home() {
               <h1 className="display-5 fw-bold mb-4">Login As:</h1>
               <div className="col-lg-6 mx-auto">
                 <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                  <Nav.Link className="button2" href="/admin">
+                  <Nav.Link className="button2" href="/admin/login">
                     <Button
                       className="transparent"
                       variant="dark"
@@ -36,7 +36,7 @@ export default function Home() {
                       <b>Admin</b>
                     </Button>
                   </Nav.Link>
-                  <Nav.Link className="button1" href="/student">
+                  <Nav.Link className="button1" href="/student/login">
                     <Button
                       className="transparent"
                       variant="outline-dark"
@@ -184,12 +184,12 @@ export default function Home() {
             featuring Sass variables and mixins, responsive grid system.
           </p>
         </div>
-        <div className="overflow-hidden" style={{ maxHeight: "30vh" }}>
+        <div className="overflow-hidden" style={{ maxHeight: "40vh" }}>
           <div className="container px-5">
             <img
               src="test2.png"
               className="img-fluid border rounded-3 shadow-lg mb-4"
-              alt="Example image"
+              alt="Preview"
               width="700"
               height="500"
               loading="lazy"
@@ -198,7 +198,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className=" col-xxl-8 px-4 pb-5">
+      <div className="col-xxl-8 px-4 pb-5">
         <div className="container">
           <div className="row flex-lg-row align-items-center g-5 py-5">
             <div className="col-10 col-sm-8 col-lg-6">
@@ -218,10 +218,11 @@ export default function Home() {
                 stand out in the fierce competition of job applications in Hong
                 Kong as I can contribute with a new perspective and mindset."
               </p>
+              <hr />
               <p className="lead">
                 <b>CONSEJA DIANA JAHN BRILLANTES</b>
                 <br />
-                BACHELOR’S IN COMMUNICATION AND MEDIA STUDIES, UOWCH
+                Bachelor's in Communication and Media Studies, UOWCH
               </p>
             </div>
           </div>

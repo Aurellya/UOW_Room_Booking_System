@@ -24,7 +24,7 @@ const NavBar = () => {
         <Nav.Link href="/about">About</Nav.Link>
         <Nav.Link href="/guides">Guides</Nav.Link>
         <Nav.Link href="/contact">Contact Us</Nav.Link>
-        <Nav.Link href="/register">
+        <Nav.Link href="/student/register">
           <Button variant="outline-dark" className="button1 button-h">
             Register
           </Button>
