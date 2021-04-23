@@ -82,6 +82,14 @@ a:hover {
   border: none;
 }
 
+.transparent:active,
+.transparent:focus,
+.transparent:visited {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .justify-content-sm-center .button1,
 .justify-content-sm-center .button2 {
   padding: 10px 40px;
