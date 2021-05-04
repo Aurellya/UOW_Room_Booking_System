@@ -67,14 +67,13 @@ export default function Home() {
             </div>
             <div className="col-lg-6">
               <h1 className="display-5 fw-bold lh-1 mb-3">
-                Responsive left-aligned hero with image
+                Modern Design: Book a Room from Anywhere, Anytime
               </h1>
               <p className="lead">
-                Quickly design and customize responsive mobile-first sites with
-                Bootstrap, the world’s most popular front-end open source
-                toolkit, featuring Sass variables and mixins, responsive grid
-                system, extensive prebuilt components, and powerful JavaScript
-                plugins.
+                UOW provides a professional, easy-to-use and the most extensive
+                room booking system for students. UOW Room booking system will
+                allow you to do the online bookings and payments easily. The
+                booking can be done anywhere and anytime you like.
               </p>
             </div>
           </div>
@@ -84,91 +83,90 @@ export default function Home() {
       <div className="container py-5" id="icon-grid">
         <h2 className="pb-2 border-bottom">Features</h2>
         <div className="row row-cols-4 g-4 py-5">
-          <div className="col d-flex align-items-start">
+          <div className="col d-flex align-items-start my-1">
             <div className="bi text-muted flex-shrink-0 me-3 px-2">
               <MdUpdate size={40} />
             </div>
             <div>
-              <h4 className="fw-bold mb-0">Featured title</h4>
+              <h4 className="fw-bold mb-1">Security</h4>
+              <p>We provide the secure environment for the online payments.</p>
+            </div>
+          </div>
+          <div className="col d-flex align-items-start my-1">
+            <div className="bi text-muted flex-shrink-0 me-3 px-2">
+              <MdUpdate size={40} />
+            </div>
+            <div>
+              <h4 className="fw-bold mb-1">Look & Feel</h4>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
+                Providing you look & feel. Great User Interface and
+                functionality? Say No More!
               </p>
             </div>
           </div>
-          <div className="col d-flex align-items-start">
+          <div className="col d-flex align-items-start my-1">
             <div className="bi text-muted flex-shrink-0 me-3 px-2">
               <MdUpdate size={40} />
             </div>
             <div>
-              <h4 className="fw-bold mb-0">Featured title</h4>
+              <h4 className="fw-bold mb-1">Easy-to-use</h4>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
+                We provide the easy and self-explanatory design for the system.
               </p>
             </div>
           </div>
-          <div className="col d-flex align-items-start">
+          <div className="col d-flex align-items-start my-1">
             <div className="bi text-muted flex-shrink-0 me-3 px-2">
               <MdUpdate size={40} />
             </div>
             <div>
-              <h4 className="fw-bold mb-0">Featured title</h4>
+              <h4 className="fw-bold mb-1">Real-time</h4>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
+                View the real-time data update of the available rooms to book.
               </p>
             </div>
           </div>
-          <div className="col d-flex align-items-start">
+          <div className="col d-flex align-items-start my-1">
             <div className="bi text-muted flex-shrink-0 me-3 px-2">
               <MdUpdate size={40} />
             </div>
             <div>
-              <h4 className="fw-bold mb-0">Featured title</h4>
+              <h4 className="fw-bold mb-1">Book Room</h4>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
+                After successful login, you can pick and book a room of your
+                choice.
               </p>
             </div>
           </div>
-          <div className="col d-flex align-items-start">
+          <div className="col d-flex align-items-start my-1">
             <div className="bi text-muted flex-shrink-0 me-3 px-2">
               <MdUpdate size={40} />
             </div>
             <div>
-              <h4 className="fw-bold mb-0">Featured title</h4>
+              <h4 className="fw-bold mb-1">Modify Booking</h4>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
+                We make it possible to update or modify your existing booking.
               </p>
             </div>
           </div>
-          <div className="col d-flex align-items-start">
+          <div className="col d-flex align-items-start my-1">
             <div className="bi text-muted flex-shrink-0 me-3 px-2">
               <MdUpdate size={40} />
             </div>
             <div>
-              <h4 className="fw-bold mb-0">Featured title</h4>
-              <p>
-                Paragraph of text beneath the heading to explain the heading.
-              </p>
+              <h4 className="fw-bold mb-1">Cancellation</h4>
+              <p>Cancellation allows you to cancel your booking immediately.</p>
             </div>
           </div>
-          <div className="col d-flex align-items-start">
+          <div className="col d-flex align-items-start my-1">
             <div className="bi text-muted flex-shrink-0 me-3 px-2">
               <MdUpdate size={40} />
             </div>
             <div>
-              <h4 className="fw-bold mb-0">Featured title</h4>
+              <h4 className="fw-bold mb-1">Forgot Password</h4>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
-              </p>
-            </div>
-          </div>
-          <div className="col d-flex align-items-start">
-            <div className="bi text-muted flex-shrink-0 me-3 px-2">
-              <MdUpdate size={40} />
-            </div>
-            <div>
-              <h4 className="fw-bold mb-0">Featured title</h4>
-              <p>
-                Paragraph of text beneath the heading to explain the heading.
+                Recover your account's password easily. A code will be sent to
+                your email.
               </p>
             </div>
           </div>
@@ -176,15 +174,16 @@ export default function Home() {
       </div>
 
       <div className="dark-background px-4 pt-5 mb-5 text-center border-bottom">
-        <h1 className="display-5 fw-bold lh-1 mb-2">Centered screenshot</h1>
+        <h1 className="display-5 fw-bold lh-1 mb-2">Unique Experience</h1>
         <div className="col-lg-6 mx-auto">
           <p className="lead mb-5">
-            Quickly design and customize responsive mobile-first sites with
-            Bootstrap, the world’s most popular front-end open source toolkit,
-            featuring Sass variables and mixins, responsive grid system.
+            UOW Booking System is created to enable UOW students to book a room
+            easier than ever. Book a Room online without a need to queue in the
+            counter. Save time and effort. Provide you with the stunning design
+            and perfect built-in functionality.
           </p>
         </div>
-        <div className="overflow-hidden" style={{ maxHeight: "40vh" }}>
+        <div className="overflow-hidden" style={{ maxHeight: "350px" }}>
           <div className="container px-5">
             <img
               src="test2.png"
@@ -213,14 +212,15 @@ export default function Home() {
             </div>
             <div className="col-lg-6">
               <p className="lead">
-                "Unlike the conventional method of learning in Hong Kong, the
-                UOW course was very cutting-edge and I believe this will help me
-                stand out in the fierce competition of job applications in Hong
-                Kong as I can contribute with a new perspective and mindset."
+                "Unlike the conventional room booking system, the UOW room
+                booking system is very cutting-edge and I believe this will help
+                me and lots of students in terms of time-saving and efficiency.
+                This system is also have a really interesting and nice user
+                interface design and functionality."
               </p>
               <hr />
               <p className="lead">
-                <b>CONSEJA DIANA JAHN BRILLANTES</b>
+                <b>MAGDALENA JOANNE ENN ERIKSSON</b>
                 <br />
                 Bachelor's in Communication and Media Studies, UOWCH
               </p>

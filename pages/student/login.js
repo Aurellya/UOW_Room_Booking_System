@@ -15,6 +15,11 @@ function login(props) {
   const router = useRouter();
   const appContext = useContext(AppContext);
 
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
   useEffect(() => {
     if (appContext.isAuthenticated) {
       router.push("/"); // redirect if you're already logged in
@@ -111,14 +116,18 @@ function login(props) {
                 <Form.Group controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
-                    type="password"
+                    type={passwordShown ? "text" : "password"}
                     placeholder="Password"
                     onChange={(event) => onChange(event)}
                     name="password"
                   />
                 </Form.Group>
                 <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" label="Show password" />
+                  <Form.Check
+                    onClick={togglePasswordVisiblity}
+                    type="checkbox"
+                    label="Show password"
+                  />
                 </Form.Group>
                 <Button
                   variant="outline-dark"
@@ -146,7 +155,9 @@ function login(props) {
               </Form>
               <hr className="ml-0 mt-2" />
               <div className="pl-3 z-1">
-                <Link href="/">Forgotten your username or password?</Link>
+                <Link href="/student/forgotPwd">
+                  Forgotten your username or password?
+                </Link>
                 <p>
                   Do not have an account yet?&nbsp;
                   <Link href="/student/register">Create Account</Link>

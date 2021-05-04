@@ -13,6 +13,11 @@ const register = () => {
   const [error, setError] = useState({});
   const appContext = useContext(AppContext);
 
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
   return (
     <>
       <Head>
@@ -119,7 +124,7 @@ const register = () => {
                       setData({ ...data, password: e.target.value })
                     }
                     value={data.password}
-                    type="password"
+                    type={passwordShown ? "text" : "password"}
                     name="password"
                     placeholder="Password"
                   />
@@ -127,12 +132,16 @@ const register = () => {
                 <Form.Group controlId="formBasicConfirmPassword">
                   <Form.Label>Confirm Password</Form.Label>
                   <Form.Control
-                    type="password"
-                    placeholder="Confirm Password"
+                    type={passwordShown ? "text" : "password"}
+                    placeholder="Password"
                   />
                 </Form.Group>
                 <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" label="Show password" />
+                  <Form.Check
+                    onClick={togglePasswordVisiblity}
+                    type="checkbox"
+                    label="Show password"
+                  />
                 </Form.Group>
                 <Button
                   disabled={loading}

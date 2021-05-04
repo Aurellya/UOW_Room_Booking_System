@@ -5,11 +5,15 @@ import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useState, useEffect, useContext } from "react";
-import { loginUser } from "../../lib/auth";
+import { resetPassword } from "../../lib/auth";
 import AppContext from "../../context/AppContext";
 
-const login = (props) => {
-  const [data, updateData] = useState({ identifier: "", password: "" });
+function resetPwd(props) {
+  const [data, updateData] = useState({
+    code: "",
+    password: "",
+    passwordConfirmation: "",
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const router = useRouter();
@@ -20,11 +24,11 @@ const login = (props) => {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  useEffect(() => {
-    if (appContext.isAuthenticated) {
-      router.push("/"); // redirect if you're already logged in
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (appContext.isAuthenticated) {
+  //     router.push("/"); // redirect if you're already logged in
+  //   }
+  // }, []);
 
   function onChange(event) {
     updateData({ ...data, [event.target.name]: event.target.value });
@@ -33,7 +37,7 @@ const login = (props) => {
   return (
     <>
       <Head>
-        <title>Admin Login | UOW Room Booking System</title>
+        <title>Student Login | UOW Room Booking System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
@@ -74,14 +78,13 @@ const login = (props) => {
                   height={181}
                   className="d-block mx-auto"
                 />
-                <h1 className="display-5 admin-title">Admin</h1>
               </div>
             </div>
           </div>
 
           <div className="login-fb2 me-md-3 pt-3 pb-5 px-3 pt-md-5 px-md-5 overflow-hidden">
             <div className="mt-3 p-2 text-center text-light">
-              <h2 className="display-5">Login Page</h2>
+              <h2 className="display-5">Reset Password</h2>
               <p className="lead">And an even wittier subheading.</p>
             </div>
             <div className="text-center">
@@ -102,26 +105,34 @@ const login = (props) => {
             </div>
             <div className="shadow-sm mx-auto bg-form mb-3">
               <Form style={{ padding: "12px 16px" }}>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
+                <Form.Group controlId="formBasicCode">
+                  <Form.Label>Enter Code</Form.Label>
                   <Form.Control
+                    type="text"
+                    placeholder="Code"
                     onChange={(event) => onChange(event)}
-                    name="identifier"
-                    type="email"
-                    placeholder="Enter email"
+                    name="code"
                   />
                   <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
+                    We sent the code to your email.
                   </Form.Text>
                 </Form.Group>
-
                 <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
+                  <Form.Label>New Password</Form.Label>
                   <Form.Control
                     type={passwordShown ? "text" : "password"}
                     placeholder="Password"
                     onChange={(event) => onChange(event)}
                     name="password"
+                  />
+                </Form.Group>
+                <Form.Group controlId="formBasicConfirmPassword">
+                  <Form.Label>Confirm Password</Form.Label>
+                  <Form.Control
+                    type={passwordShown ? "text" : "password"}
+                    placeholder="Password"
+                    onChange={(event) => onChange(event)}
+                    name="passwordConfirmation"
                   />
                 </Form.Group>
                 <Form.Group controlId="formBasicCheckbox">
@@ -135,44 +146,36 @@ const login = (props) => {
                   variant="outline-dark"
                   className="button2 button-h2"
                   onClick={() => {
-                    if (
-                      data.identifier != "uow_admin@uowmail.edu.au" &&
-                      data.identifier != ""
-                    ) {
+                    if (data.identifier == "uow_admin@uowmail.edu.au") {
                       data.identifier = "a";
                     }
 
                     setLoading(true);
-                    loginUser(data.identifier, data.password)
+                    resetPassword(
+                      data.code,
+                      data.password,
+                      data.passwordConfirmation
+                    )
                       .then((res) => {
                         setLoading(false);
                         // set authed User in global context to update header/app state
                         appContext.setUser(res.data.user);
                       })
                       .catch((error) => {
-                        if (
-                          error.response.data.message[0].messages[0].message ==
-                          "Identifier or password invalid."
-                        ) {
-                          error.response.data.message[0].messages[0].message =
-                            "Identifier or password invalid. You are not Admin";
-                          setError(error.response.data);
-                        } else {
-                          setError(error.response.data);
-                        }
-
+                        setError(error.response.data);
                         setLoading(false);
                       });
                   }}
                 >
-                  {loading ? "Loading... " : "Submit"}
+                  {loading ? "Loading... " : "Reset"}
                 </Button>
               </Form>
               <hr className="ml-0 mt-2" />
               <div className="pl-3 z-1">
+                <Link href="/student/forgotPwd">Not getting email?</Link>
                 <p>
-                  Not Admin?&nbsp;
-                  <Link href="/student/login">Log in as Student</Link>
+                  Do not have an account yet?&nbsp;
+                  <Link href="/student/register">Create Account</Link>
                 </p>
               </div>
             </div>
@@ -181,6 +184,6 @@ const login = (props) => {
       </div>
     </>
   );
-};
+}
 
-export default login;
+export default resetPwd;
