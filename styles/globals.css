@@ -77,6 +77,40 @@ a:hover {
   transition-property: background-color, color;
 }
 
+.buttonbox {
+  background-color: #001641;
+  border-color: #001641;
+  color: white;
+}
+
+.buttonbox:hover {
+  background-color: #001641;
+  color: white !important;
+  opacity: 0.4;
+  transition-property: opacity;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+}
+
+.button-crud {
+  background-color: #001641;
+  border-color: #001641;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.button-crud:hover {
+  background-color: #001641;
+  color: white !important;
+  opacity: 0.4;
+  transition-property: opacity;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+}
+
 .transparent {
   background-color: transparent;
   border: none;
@@ -183,7 +217,65 @@ a:hover {
   border-radius: 20px;
 }
 
+.user-box {
+  border: 1px solid #001641;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #001641;
+  color: #f8f9fa;
+}
+
 .footer {
   position: relative;
   padding: initial 1.5rem;
+}
+
+.username_nav {
+  color: #001641;
+}
+
+.username_nav:hover {
+  opacity: 0.6;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+}
+
+.btn-filter {
+  background-color: #001641;
+  height: 110px;
+}
+
+.btn-filter:hover {
+  opacity: 0.6;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+}
+
+.filter-box {
+  margin: 30px 0;
+  border: 1px solid #b3b8c7;
+  padding: 20px 25px;
+  width: fit-content;
+  border-radius: 3px;
+}
+
+.filter-btn-sm {
+  background-color: #001641;
+  color: white;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.filter-btn-sm:hover {
+  opacity: 0.6;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+  color: white;
+  transition-property: opacity;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: initial !important;
 }

@@ -67,18 +67,18 @@ const register = () => {
           </div>
 
           <div className="login-fb2 me-md-3 pt-3 pb-5 px-3 pt-md-5 px-md-5 overflow-hidden">
-            <div className="my-3 p-2 text-center text-light">
+            <div className="mt-3 mb-2 p-2 text-center text-light">
               <h2 className="display-5">Register Now</h2>
               <p className="lead">And an even wittier subheading.</p>
             </div>
-            <div>
+            <div className="text-center">
               {Object.entries(error).length !== 0 &&
                 error.constructor === Object &&
                 error.message.map((error) => {
                   return (
                     <div
                       key={error.messages[0].id}
-                      style={{ marginBottom: 10 }}
+                      style={{ marginBottom: 20 }}
                     >
                       <small style={{ color: "red" }}>
                         {error.messages[0].message}
@@ -88,7 +88,7 @@ const register = () => {
                 })}
             </div>
             <div className="shadow-sm mx-auto bg-form mb-3">
-              <Form style={{ minWidth: "450px", padding: "16px" }}>
+              <Form style={{ minWidth: "450px", padding: "12px 16px" }}>
                 <Form.Group controlId="formBasicUserName">
                   <Form.Label>Username</Form.Label>
                   <Form.Control

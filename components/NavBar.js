@@ -17,7 +17,7 @@ export default function NavBar(props) {
       variant="light"
       className="rounded-3 border shadow-sm"
     >
-      <Navbar.Brand href="/">
+      <Navbar.Brand href={props.user ? "./dashboard" : "/"}>
         <BiBookReader size={32} />
         <span className="ml-2">
           <b>UOW Room Booking System</b>
@@ -27,8 +27,8 @@ export default function NavBar(props) {
       <Navbar.Collapse className="justify-content-end">
         {props.user ? (
           <>
-            <Nav.Link className="ml-auto">
-              <span style={{ color: "black" }}>{props.user.username}</span>
+            <Nav.Link className="ml-auto" href="./adminProfile">
+              <span className="username_nav">{props.user.username}</span>
             </Nav.Link>
             <Nav.Link>
               <Button
