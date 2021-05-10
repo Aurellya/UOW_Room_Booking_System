@@ -2,6 +2,7 @@
 import { BiRefresh } from "react-icons/bi";
 import { useState } from "react";
 import Listing from "../../components/RoomList/list";
+import Link from "next/link";
 
 function RoomList(props) {
   const [filter, setFilter] = useState(false);
@@ -31,9 +32,9 @@ function RoomList(props) {
         <h1 className="h2">Room List</h1>
         <div className="btn-toolbar mb-2 mb-md-0">
           <div className="btn-group me-2">
-            <button type="button" className="btn btn-sm button-crud">
-              Add Room
-            </button>
+            <Link href="/admin/addRoom" className="btn btn-sm button-crud">
+              <a className="btn btn-sm button-crud">Add Room</a>
+            </Link>
           </div>
         </div>
       </div>

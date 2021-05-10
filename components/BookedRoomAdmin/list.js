@@ -38,7 +38,7 @@ function Listing(props) {
   if (error) return "Error loading bookingSlots";
   //if bookingSlots are returned from the GraphQL query, run the filter query
   //and set equal to variable bookingSlotsSearch
-  if (loading) return <h1>Fetching</h1>;
+  if (loading) return <h1 className="text-center my-4">Fetching...</h1>;
   if (data.bookingRooms && data.bookingRooms.length) {
     //searchQuery
     var searchQuery = "";
@@ -104,7 +104,7 @@ function Listing(props) {
     if (searchQuery.length != 0) {
       return (
         <div>
-          <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
+          <div className="row row-cols-1 row-cols-md-3 mb-5 text-center">
             {searchQuery.map((res) => (
               <div className="col" key={res.id}>
                 <div
@@ -159,9 +159,9 @@ function Listing(props) {
         </div>
       );
     } else {
-      return <h1>No Rooms Found</h1>;
+      return <h1 className="text-center my-4">No Rooms Found</h1>;
     }
   }
-  return <h5>Add Rooms</h5>;
+  return <h5 className="text-center my-4">Add Rooms</h5>;
 }
 export default Listing;

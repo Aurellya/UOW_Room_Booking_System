@@ -279,3 +279,8 @@ a:hover {
   outline: none !important;
   border-color: initial !important;
 }
+
+#success_msg,
+#warning_msg {
+  display: none;
+}

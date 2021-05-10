@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
 import { BiRefresh } from "react-icons/bi";
+import Link from "next/link";
 
 function AvailableRoom(props) {
   // const [query, updateQuery] = useState("");
@@ -62,9 +63,9 @@ function AvailableRoom(props) {
         <h1 className="h2">Available Room</h1>
         <div className="btn-toolbar mb-2 mb-md-0">
           <div className="btn-group me-2">
-            <button type="button" className="btn btn-sm button-crud">
-              Launch Room
-            </button>
+            <Link href="/admin/launchRoom" className="btn btn-sm button-crud">
+              <a className="btn btn-sm button-crud">Launch Room</a>
+            </Link>
           </div>
         </div>
       </div>

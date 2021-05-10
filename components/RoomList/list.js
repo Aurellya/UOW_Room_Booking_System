@@ -1,11 +1,10 @@
-/* components/RestaurantList/index.js */
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import Link from "next/link";
 
 const QUERY = gql`
   {
-    rooms {
+    rooms(sort: "room_no") {
       id
       room_no
       block
@@ -20,7 +19,7 @@ function Listing(props) {
   if (error) return "Error loading rooms";
   // if rooms are returned from the GraphQL query, run the filter query
   // and set equal to variable roomSearch
-  if (loading) return <h1>Fetching</h1>;
+  if (loading) return <h1 className="text-center my-4">Fetching...</h1>;
 
   if (data.rooms && data.rooms.length) {
     // searchQuery
@@ -87,9 +86,9 @@ function Listing(props) {
         </div>
       );
     } else {
-      return <h1>No Rooms Found</h1>;
+      return <h1 className="text-center my-4">No Rooms Found</h1>;
     }
   }
-  return <h5>Add Rooms</h5>;
+  return <h5 className="text-center my-4">Add Rooms</h5>;
 }
 export default Listing;
