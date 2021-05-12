@@ -9,6 +9,20 @@ import AppContext from "../context/AppContext";
 export default function NavBar(props) {
   const { user, setUser } = useContext(AppContext);
 
+  var role = "";
+  var profile = "";
+  if (props.user) {
+    if (props.user.role.name == "Authenticated") {
+      role = "admin";
+      profile = "adminProfile";
+    } else if (props.user.role.name == "Student") {
+      role = "student";
+      profile = "studentProfile";
+    } else {
+      role = "public";
+    }
+  }
+
   return (
     <Navbar
       collapseOnSelect
@@ -17,7 +31,7 @@ export default function NavBar(props) {
       variant="light"
       className="rounded-3 border shadow-sm"
     >
-      <Navbar.Brand href={props.user ? "./dashboard" : "/"}>
+      <Navbar.Brand href={props.user ? `/${role}/dashboard` : "/"}>
         <BiBookReader size={32} />
         <span className="ml-2">
           <b>UOW Room Booking System</b>
@@ -27,7 +41,7 @@ export default function NavBar(props) {
       <Navbar.Collapse className="justify-content-end">
         {props.user ? (
           <>
-            <Nav.Link className="ml-auto" href="./adminProfile">
+            <Nav.Link className="ml-auto" href={`/${role}/${profile}`}>
               <span className="username_nav">{props.user.username}</span>
             </Nav.Link>
             <Nav.Link>

@@ -109,6 +109,7 @@ function AvailableRoom(props) {
             <div className="input-group">
               <DatePicker
                 className="form-control"
+                minDate={new Date()}
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
               />

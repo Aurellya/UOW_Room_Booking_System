@@ -6,7 +6,7 @@ const QUERY = gql`
   mutation CreateRoom(
     $room_no: String!
     $block: String!
-    $capacity: Long!
+    $capacity: Long
     $promo_code: String!
   ) {
     createRoom(
@@ -76,9 +76,10 @@ const addRoom = () => {
       window.setTimeout(() => {
         document.getElementById("add_room_form").reset();
       }, 0);
-
-      var ele = document.getElementById("success_msg");
-      ele.style.display = "block";
+      window.setTimeout(() => {
+        var ele = document.getElementById("success_msg");
+        ele.style.display = "block";
+      }, 0);
     }
   }
 

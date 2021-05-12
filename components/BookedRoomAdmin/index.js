@@ -17,7 +17,7 @@ function BookedRoomAdmin(props) {
 
   function filteringResult(e) {
     e.preventDefault();
-    let block_temp = document.getElementById("block").value;
+    let block_temp = document.getElementById("block").value.toUpperCase();
     let cap = document.getElementById("cap").value;
     let price = document.getElementById("price").value;
     let username = document.getElementById("username").value;

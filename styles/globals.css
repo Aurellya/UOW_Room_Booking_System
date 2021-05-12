@@ -284,3 +284,23 @@ a:hover {
 #warning_msg {
   display: none;
 }
+
+.deleteItem_btn {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  margin-bottom: 3px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.deleteItem_btn:hover {
+  opacity: 0.6;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+  transition-property: opacity;
+}

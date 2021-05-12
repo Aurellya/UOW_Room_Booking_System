@@ -1,9 +1,30 @@
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useRouter } from "next/router";
+import { gql } from "apollo-boost";
+import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
-import { useState, useEffect } from "react";
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+
+const GET_ROOM_INFO = gql`
+  query BookingSlot($id: ID!) {
+    bookingSlot(id: $id) {
+      id
+      date
+      time_start
+      time_end
+      price
+      availability
+      room {
+        id
+        room_no
+        block
+        capacity
+        promo_code
+      }
+    }
+  }
+`;
 
 const QUERY = gql`
   {
@@ -14,24 +35,24 @@ const QUERY = gql`
   }
 `;
 
-const QUERY2 = gql`
-  mutation CreateBookingSlot(
-    $room: ID!
+const UPDATE_QUERY = gql`
+  mutation UpdateBookingSlot(
+    $id: ID!
+    $room: ID
     $price: Float
     $date: Date
     $time_start: Time
     $time_end: Time
-    $availability: Boolean
   ) {
-    createBookingSlot(
+    updateBookingSlot(
       input: {
+        where: { id: $id }
         data: {
           room: $room
           price: $price
           date: $date
           time_start: $time_start
           time_end: $time_end
-          availability: $availability
         }
       }
     ) {
@@ -40,9 +61,10 @@ const QUERY2 = gql`
         date
         time_start
         time_end
-        availability
         price
+        availability
         room {
+          id
           room_no
         }
       }
@@ -50,7 +72,9 @@ const QUERY2 = gql`
   }
 `;
 
-const launchRoom = () => {
+const editSlot = () => {
+  const router = useRouter();
+
   function useDidMount() {
     const [didMount, setDidMount] = useState(false);
     useEffect(() => {
@@ -59,10 +83,22 @@ const launchRoom = () => {
 
     return didMount;
   }
+
   const didMount = useDidMount();
 
-  const [startDate, setStartDate] = useState("");
   const [formState, setFormState] = useState(0);
+  const [startDate, setStartDate] = useState("");
+
+  const [createLink] = useMutation(UPDATE_QUERY, {
+    variables: {
+      id: router.query.id,
+      room: formState.room,
+      price: formState.price,
+      date: formState.date,
+      time_start: formState.time_start,
+      time_end: formState.time_end,
+    },
+  });
 
   useEffect(() => {
     if (didMount) {
@@ -74,16 +110,17 @@ const launchRoom = () => {
     }
   }, [formState]);
 
-  const [createLink] = useMutation(QUERY2, {
-    variables: {
-      room: formState.room,
-      price: formState.price,
-      date: formState.date,
-      time_start: formState.time_start,
-      time_end: formState.time_end,
-      availability: formState.availability,
-    },
+  const { loading, error, data } = useQuery(GET_ROOM_INFO, {
+    variables: { id: router.query.id },
   });
+
+  useEffect(() => {
+    if (data) {
+      setStartDate(new Date(data.bookingSlot.date));
+    }
+  }, [data]);
+
+  const { loading: loading2, error: error2, data: data2 } = useQuery(QUERY);
 
   function clean_date(start_date) {
     if (start_date != null) {
@@ -108,15 +145,22 @@ const launchRoom = () => {
     return y;
   }
 
-  function addingRoom(e) {
+  function updateRoom(e) {
     e.preventDefault();
 
     var room = document.getElementById("room").value.trim();
     var price = document.getElementById("price").value.trim();
     var date = clean_date(startDate);
-    var time_start =
-      document.getElementById("time_start").value.trim() + ":00.000";
-    var time_end = document.getElementById("time_end").value.trim() + ":00.000";
+
+    var time_start = document.getElementById("time_start").value.trim();
+    if (time_start.slice(-4) != ".000") {
+      time_start += ":00.000";
+    }
+
+    var time_end = document.getElementById("time_end").value.trim();
+    if (time_end.slice(-4) != ".000") {
+      time_end += ":00.000";
+    }
 
     // check input
     if (
@@ -137,7 +181,6 @@ const launchRoom = () => {
         date: date,
         time_start: time_start,
         time_end: time_end,
-        availability: true,
       });
     }
   }
@@ -147,12 +190,13 @@ const launchRoom = () => {
     x.style.display = "none";
   }
 
-  const { loading, error, data } = useQuery(QUERY);
-  if (error) return "Error loading rooms";
-  if (loading) return <h1 className="text-center my-4">Fetching...</h1>;
+  if (error || error2) return "Error Loading Room";
+  if (loading || loading2) return <h1>Loading ...</h1>;
 
-  if (data.rooms && data.rooms.length) {
-    var searchQuery = data.rooms.filter((query) =>
+  if (data2.rooms && data2.rooms.length && data.bookingSlot) {
+    const { bookingSlot } = data;
+
+    var searchQuery = data2.rooms.filter((query) =>
       query.room_no.toUpperCase().includes("")
     );
 
@@ -196,7 +240,7 @@ const launchRoom = () => {
           </div>
 
           <div className="container col-xxl-8 px-5 py-5 my-5 rounded-3 border shadow">
-            <h4 className="mb-1 ">Launch Room</h4>
+            <h4 className="mb-1 ">Update Slot [ID: #{bookingSlot.id}]</h4>
             <hr className="mb-4" />
             <form id="launch_room_form">
               <div className="row">
@@ -205,7 +249,7 @@ const launchRoom = () => {
                   <select
                     className="form-control"
                     id="room"
-                    defaultValue="DEFAULT"
+                    defaultValue={bookingSlot.room.id}
                   >
                     <option value="DEFAULT" disabled>
                       Room Number
@@ -225,6 +269,7 @@ const launchRoom = () => {
                     className="form-control"
                     id="price"
                     placeholder="Price"
+                    defaultValue={bookingSlot.price}
                   />
                 </div>
               </div>
@@ -234,8 +279,8 @@ const launchRoom = () => {
                   <div className="input-group">
                     <DatePicker
                       className="form-control"
-                      selected={startDate}
                       minDate={new Date()}
+                      selected={startDate}
                       onChange={(date) => setStartDate(date)}
                     />
                     <div className="input-group-append">
@@ -253,6 +298,7 @@ const launchRoom = () => {
                     className="form-control"
                     id="time_start"
                     placeholder="Start Time"
+                    defaultValue={bookingSlot.time_start}
                   />
                 </div>
 
@@ -263,6 +309,7 @@ const launchRoom = () => {
                     className="form-control"
                     id="time_end"
                     placeholder="End Time"
+                    defaultValue={bookingSlot.time_end}
                   />
                 </div>
               </div>
@@ -271,9 +318,9 @@ const launchRoom = () => {
                 <button
                   type="submit"
                   className="btn filter-btn-sm mt-3"
-                  onClick={(e) => addingRoom(e)}
+                  onClick={(e) => updateRoom(e)}
                 >
-                  Launch
+                  Update
                 </button>
               </div>
             </form>
@@ -281,16 +328,8 @@ const launchRoom = () => {
         </>
       );
     }
-  } else {
-    return (
-      <>
-        <h1 className="text-center my-4">
-          Fetching Data Unsuccessfully. <br />
-          Refresh the page or Come back later!
-        </h1>
-      </>
-    );
   }
+  return <h1>Not Found</h1>;
 };
 
-export default launchRoom;
+export default editSlot;

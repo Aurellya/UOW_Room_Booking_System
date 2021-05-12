@@ -15,7 +15,7 @@ const adminProfile = () => {
             <div className="row">
               <h4 className="mb-1 col-6">Account Information</h4>
               <div className="col-6 text-right px-4">
-                <Link href="/admin/dashboard">
+                <Link href="/admin/editProfile">
                   <a>
                     <HiPencilAlt />
                   </a>
@@ -28,27 +28,27 @@ const adminProfile = () => {
             {user ? (
               <div className="row  g-3">
                 <div className="col-sm-6">
-                  <label for="username " className="font-weight-bold">
+                  <label htmlFor="username " className="font-weight-bold">
                     Username:
                   </label>
                   <p id="username">{user.username}</p>
                 </div>
                 <div className="col-sm-6">
-                  <label for="role" className="font-weight-bold">
+                  <label htmlFor="role" className="font-weight-bold">
                     Role:
                   </label>
                   <p id="role"> {user.role.name}</p>
                 </div>
 
                 <div className="col-12">
-                  <label for="email" className="font-weight-bold">
+                  <label htmlFor="email" className="font-weight-bold">
                     Email:
                   </label>
                   <p id="email">{user.email}</p>
                 </div>
 
                 <div className="col-12">
-                  <label for="created_at" className=" font-weight-bold">
+                  <label htmlFor="created_at" className=" font-weight-bold">
                     Created at:
                   </label>
                   <p id="created_at">

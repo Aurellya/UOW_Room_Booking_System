@@ -1,10 +1,10 @@
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import Link from "next/link";
 
 const QUERY = gql`
   {
-    bookingSlots(where: { availability: true }) {
+    bookingSlots(where: { availability: true }, sort: "room.room_no") {
       id
       date
       time_start
@@ -21,8 +21,26 @@ const QUERY = gql`
   }
 `;
 
+const QUERY_DELETE = gql`
+  mutation DeleteBookingSlot($id: ID!) {
+    deleteBookingSlot(input: { where: { id: $id } }) {
+      bookingSlot {
+        id
+        room {
+          room_no
+        }
+      }
+    }
+  }
+`;
+
 function Listing(props) {
   const { loading, error, data } = useQuery(QUERY);
+
+  const [del_item, { del_error, del_loading }] = useMutation(QUERY_DELETE, {
+    refetchQueries: [{ query: QUERY }],
+  });
+
   if (error) return "Error loading Booking Slots";
   // if bookingSlots are returned from the GraphQL query, run the filter query
   // and set equal to variable bookingSlotsSearch
@@ -90,9 +108,24 @@ function Listing(props) {
                     style={{
                       backgroundColor: "#001641",
                       borderColor: "#001641",
+                      position: "relative",
                     }}
                   >
                     <h4 className="my-0 fw-normal">Slot ID: {res.id}</h4>
+                    <button
+                      aria-hidden="true"
+                      className="deleteItem_btn"
+                      onClick={() =>
+                        del_item({
+                          variables: {
+                            id: res.id,
+                          },
+                        })
+                      }
+                      disabled={del_loading}
+                    >
+                      &times;
+                    </button>
                   </div>
                   <div className="card-body">
                     <h1 className="card-title pricing-card-title">
@@ -116,7 +149,12 @@ function Listing(props) {
                         {res.availability ? "Available" : "Booked"}
                       </li>
                     </ul>
-                    <Link as={`/rooms/${res.id}`} href={`/rooms?id=${res.id}`}>
+                    <Link
+                      href={{
+                        pathname: `/admin/editSlot/[id]`,
+                        query: { id: res.id },
+                      }}
+                    >
                       <a className="w-100 btn btn-lg buttonbox">
                         {props.btnText}
                       </a>
