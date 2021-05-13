@@ -162,7 +162,8 @@ function AvailableRoom(props) {
         capacity={capacity}
         price={price}
         date={date}
-        btnText="Edit"
+        btnText={props.btnText}
+        staff={props.staff}
       ></Listing>
     </>
   );

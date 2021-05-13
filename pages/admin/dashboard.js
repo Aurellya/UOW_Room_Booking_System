@@ -81,7 +81,11 @@ function dashboard(props) {
       </div>
 
       <div id="availableroom" className="mb-5">
-        <AvailableRoom search={query}></AvailableRoom>
+        <AvailableRoom
+          search={query}
+          btnText="Edit"
+          staff="staff"
+        ></AvailableRoom>
       </div>
 
       <div id="bookedroom">

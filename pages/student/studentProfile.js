@@ -4,7 +4,7 @@ import Image from "next/image";
 import { HiPencilAlt } from "react-icons/hi";
 import Link from "next/link";
 
-const adminProfile = () => {
+const studentProfile = () => {
   const { user, setUser } = useContext(AppContext);
 
   return (
@@ -15,7 +15,7 @@ const adminProfile = () => {
             <div className="row">
               <h4 className="mb-1 col-6">Account Information</h4>
               <div className="col-6 text-right px-4">
-                <Link href="/admin/editProfile">
+                <Link href="/student/editProfile">
                   <a>
                     <HiPencilAlt />
                   </a>
@@ -38,9 +38,7 @@ const adminProfile = () => {
                     Role:
                   </label>
                   <p id="role">
-                    {user.role.name == "Authenticated"
-                      ? "Staff"
-                      : user.role.name}
+                    {user.role.name == "Student" ? "Student" : user.role.name}
                   </p>
                 </div>
 
@@ -80,4 +78,4 @@ const adminProfile = () => {
   );
 };
 
-export default adminProfile;
+export default studentProfile;

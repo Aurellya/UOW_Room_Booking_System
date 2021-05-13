@@ -167,7 +167,6 @@ a:hover {
   width: fit-content;
   padding: 25px 40px 18px 30px;
   border-radius: 21px 21px 0 0;
-  /* border-bottom: 10px solid #ff3401; */
   border-bottom: 6px solid #717788;
 }
 
@@ -281,7 +280,8 @@ a:hover {
 }
 
 #success_msg,
-#warning_msg {
+#warning_msg,
+#conf_msg {
   display: none;
 }
 
@@ -303,4 +303,61 @@ a:hover {
   transition-duration: 0.4s;
   transition-timing-function: linear;
   transition-property: opacity;
+}
+
+.link1,
+.link2 {
+  padding: 18px 70px;
+  border: 1px solid #001641;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.link1:hover,
+.link2:hover {
+  opacity: 0.4;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+  transition-property: opacity;
+  text-decoration: none;
+}
+
+.link1 {
+  color: #001641;
+}
+
+.link1:hover {
+  color: #001641;
+}
+
+.link2 {
+  color: white;
+  background-color: #001641;
+}
+
+.link2:hover {
+  color: white;
+}
+
+thead {
+  background-color: #001641;
+  color: white;
+}
+
+.edit_btn {
+  padding: 8px 30px;
+  background-color: #001641;
+  color: white;
+  border-radius: 4px;
+  border: 1px solid #001641;
+}
+
+.edit_btn:hover {
+  color: white;
+  text-decoration: none;
+  opacity: 0.6;
+  transition-duration: 0.4s;
+  transition-timing-function: linear;
+  transition-property: opacity;
+  text-decoration: none;
 }

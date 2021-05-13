@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { MdUpdate } from "react-icons/md";
-import Nav from "react-bootstrap/Nav";
-import Button from "react-bootstrap/Button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -24,27 +23,21 @@ export default function Home() {
               className="d-block mx-auto"
             />
             <div className="choice">
-              <h1 className="display-5 fw-bold mb-4">Login As:</h1>
+              <h1 className="display-5 fw-bold mb-4 mt-2">
+                Room Booking System
+              </h1>
               <div className="col-lg-6 mx-auto">
                 <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                  <Nav.Link className="button2" href="/admin/login">
-                    <Button
-                      className="transparent"
-                      variant="dark"
-                      type="button"
-                    >
-                      <b>Admin</b>
-                    </Button>
-                  </Nav.Link>
-                  <Nav.Link className="button1" href="/student/login">
-                    <Button
-                      className="transparent"
-                      variant="outline-dark"
-                      type="button"
-                    >
-                      <b>Student</b>
-                    </Button>
-                  </Nav.Link>
+                  <Link href="/contact">
+                    <a className="link1">
+                      <b>Register</b>
+                    </a>
+                  </Link>
+                  <Link href="/login">
+                    <a className="link2">
+                      <b>Book&nbsp;Now</b>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -2,12 +2,42 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import { BiBookReader } from "react-icons/bi";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { logout } from "../lib/auth";
 import AppContext from "../context/AppContext";
+import { useMutation } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+
+const UPDATE_QUERY = gql`
+  mutation UpdateUser($id: ID!, $last_logout: DateTime) {
+    updateUser(
+      input: { where: { id: $id }, data: { last_logout: $last_logout } }
+    ) {
+      user {
+        id
+        username
+        last_logout
+      }
+    }
+  }
+`;
 
 export default function NavBar(props) {
   const { user, setUser } = useContext(AppContext);
+  const [id, setId] = useState("");
+
+  const [createLink] = useMutation(UPDATE_QUERY, {
+    variables: {
+      id: id,
+      last_logout: new Date(),
+    },
+  });
+
+  useEffect(() => {
+    if (props.user) {
+      setId(props.user.id);
+    }
+  }, [props]);
 
   var role = "";
   var profile = "";
@@ -18,6 +48,9 @@ export default function NavBar(props) {
     } else if (props.user.role.name == "Student") {
       role = "student";
       profile = "studentProfile";
+    } else if (props.user.role.name == "User_admin") {
+      role = "user_admin";
+      profile = "userAdminProfile";
     } else {
       role = "public";
     }
@@ -47,9 +80,14 @@ export default function NavBar(props) {
             <Nav.Link>
               <Button
                 variant="outline-dark"
-                onClick={() => {
-                  logout();
-                  setUser(null);
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  if (id) {
+                    logout();
+                    createLink();
+                    setUser(null);
+                  }
                 }}
                 className="button1 button-h"
               >
@@ -63,9 +101,9 @@ export default function NavBar(props) {
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/guides">Guides</Nav.Link>
             <Nav.Link href="/contact">Contact Us</Nav.Link>
-            <Nav.Link href="/student/register">
+            <Nav.Link href="/login">
               <Button variant="outline-dark" className="button1 button-h">
-                Register
+                Sign In
               </Button>
             </Nav.Link>
           </>

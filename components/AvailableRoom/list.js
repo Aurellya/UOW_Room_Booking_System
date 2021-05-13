@@ -123,6 +123,9 @@ function Listing(props) {
                         })
                       }
                       disabled={del_loading}
+                      style={{
+                        display: props.staff == "staff" ? "block" : "none",
+                      }}
                     >
                       &times;
                     </button>
@@ -151,7 +154,10 @@ function Listing(props) {
                     </ul>
                     <Link
                       href={{
-                        pathname: `/admin/editSlot/[id]`,
+                        pathname:
+                          props.staff == "staff"
+                            ? `/admin/editSlot/[id]`
+                            : `/student/confirmBook/[id]`,
                         query: { id: res.id },
                       }}
                     >

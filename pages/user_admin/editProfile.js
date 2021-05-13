@@ -84,13 +84,14 @@ const editProfile = () => {
       window.setTimeout(() => {
         createLink();
       }, 0);
+
       window.setTimeout(() => {
         remove_notif("warning_msg");
         var ele = document.getElementById("success_msg");
         ele.style.display = "block";
       }, 0);
       window.setTimeout(() => {
-        window.location.replace("/admin/adminProfile");
+        window.location.replace("/user_admin/userAdminProfile");
       }, 0);
     }
   }
