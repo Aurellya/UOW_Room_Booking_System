@@ -1,11 +1,9 @@
-import React, { useState, useContext } from "react";
 import CreateAccount from "../../components/CreateAccount";
 import StaffAccount from "../../components/StaffAccount";
 import StudentAccount from "../../components/StudentAccount";
+import Head from "next/head";
 
-function dashboard(props) {
-  const [query, updateQuery] = useState("");
-
+function dashboard() {
   const ids = ["staff_account", "student_account", "create_account"];
 
   function filter_cat(id) {
@@ -32,6 +30,12 @@ function dashboard(props) {
 
   return (
     <div className="container mt-4 mb-5">
+      <Head>
+        <title>UOW Room Booking System</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
       <div className="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
         <div className="col">
           <button

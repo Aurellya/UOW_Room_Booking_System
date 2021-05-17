@@ -3,12 +3,19 @@ import { useContext } from "react";
 import Image from "next/image";
 import { HiPencilAlt } from "react-icons/hi";
 import Link from "next/link";
+import Head from "next/head";
 
 const userAdminProfile = () => {
   const { user, setUser } = useContext(AppContext);
 
   return (
     <>
+      <Head>
+        <title>Profile | UOW Room Booking System</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
       <div className="container col-xxl-8 px-5 py-3 my-5 rounded-3 border shadow">
         <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
           <div className="col-10 col-sm-8 col-lg-6">

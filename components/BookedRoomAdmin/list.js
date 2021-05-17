@@ -3,7 +3,7 @@ import { gql } from "apollo-boost";
 
 const QUERY = gql`
   {
-    bookingRooms {
+    bookingRooms(sort: "booking_slot.date:desc") {
       id
       created_at
       booking_slot {
@@ -34,6 +34,12 @@ const QUERY = gql`
 
 function Listing(props) {
   const { loading, error, data } = useQuery(QUERY);
+  function getStatus(dt) {
+    var now = new Date().toISOString().split("T")[0];
+    var status = dt > now;
+    return status;
+  }
+
   if (error) return "Error loading bookingSlots";
   //if bookingSlots are returned from the GraphQL query, run the filter query
   //and set equal to variable bookingSlotsSearch
@@ -137,6 +143,22 @@ function Listing(props) {
                         {res.booking_slot.time_end.substring(0, 5)}
                       </li>
                       <li>Promo code: {res.booking_slot.room.promo_code}</li>
+                      <li>
+                        Status:{" "}
+                        <span
+                          style={{
+                            color: getStatus(res.booking_slot.date)
+                              ? "green"
+                              : "red",
+                          }}
+                        >
+                          <b>
+                            {getStatus(res.booking_slot.date)
+                              ? "Active"
+                              : "Expired"}
+                          </b>
+                        </span>
+                      </li>
                     </ul>
                   </div>
                   <div
@@ -147,8 +169,9 @@ function Listing(props) {
                     }}
                   >
                     <h4 className="mt-3 mb-3 fw-normal">Booked by:</h4>
-                    Username: {res.user.username} <br />
-                    Email: {res.user.email} <br />
+                    Username: {res.user.username ? res.user.username : "-"}{" "}
+                    <br />
+                    Email: {res.user.email ? res.user.email : "-"} <br />
                     <br />
                   </div>
                 </div>

@@ -123,7 +123,7 @@ const confirmBook = () => {
         arr.push(bookingSlotId);
       }
       setPrevSlotId(arr);
-    } else {
+    } else if (data2 && data2.user) {
       setPrevSlotId([bookingSlotId]);
     }
   }, [data2]);

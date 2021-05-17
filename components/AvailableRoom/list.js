@@ -41,6 +41,12 @@ function Listing(props) {
     refetchQueries: [{ query: QUERY }],
   });
 
+  function getStatus(dt) {
+    var now = new Date().toISOString().split("T")[0];
+    var status = dt > now;
+    return status;
+  }
+
   if (error) return "Error loading Booking Slots";
   // if bookingSlots are returned from the GraphQL query, run the filter query
   // and set equal to variable bookingSlotsSearch
@@ -81,13 +87,19 @@ function Listing(props) {
       props.price == 0 &&
       props.date == 0
     ) {
-      searchQuery = data.bookingSlots.filter((query) =>
-        query.room.room_no.toUpperCase().includes(props.search)
+      searchQuery = data.bookingSlots.filter(
+        (query) =>
+          query.room.room_no.toUpperCase().includes(props.search) &&
+          new Date(query.date) >= new Date()
       );
     } else {
       searchQuery = data.bookingSlots.filter(
         (query) =>
-          capacity(query) && block(query) && price(query) && date(query)
+          capacity(query) &&
+          block(query) &&
+          price(query) &&
+          date(query) &&
+          new Date(query.date) >= new Date()
       );
     }
 
@@ -150,6 +162,21 @@ function Listing(props) {
                       >
                         Availability:{" "}
                         {res.availability ? "Available" : "Booked"}
+                      </li>
+                      <li
+                        style={{
+                          display: props.staff == "staff" ? "block" : "none",
+                        }}
+                      >
+                        <br />
+                        Status:{" "}
+                        <span
+                          style={{
+                            color: getStatus(res.date) ? "green" : "red",
+                          }}
+                        >
+                          <b>{getStatus(res.date) ? "Active" : "Expired"}</b>
+                        </span>
                       </li>
                     </ul>
                     <Link

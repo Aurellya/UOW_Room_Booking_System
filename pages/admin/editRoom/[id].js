@@ -2,6 +2,7 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 import { gql } from "apollo-boost";
 import { useState } from "react";
+import Head from "next/head";
 
 const GET_ROOM_INFO = gql`
   query Room($id: ID!) {
@@ -116,12 +117,19 @@ const editRoom = () => {
     const { room } = data;
     return (
       <>
+        <Head>
+          <title>Edit Room | UOW Room Booking System</title>
+          <link rel="icon" href="/favicon.ico" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
+
         <div
           id="success_msg"
           className="container alert alert-success alert-dismissible fade show mt-5"
           role="alert"
         >
-          <strong>Success!</strong> The data successfully added to the database.
+          <strong>Success!</strong> The data successfully updated in the
+          database.
           <button
             type="button"
             className="close"
@@ -138,8 +146,7 @@ const editRoom = () => {
           className="container alert alert-danger alert-dismissible fade show mt-5"
           role="alert"
         >
-          <strong>Invalid Input!</strong> Your submission cancelled. Check
-          again!
+          <strong>Invalid Input!</strong> Your submission failed. Check again!
           <button
             type="button"
             className="close"

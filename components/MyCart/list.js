@@ -1,7 +1,7 @@
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const QUERY = gql`
   query User($id: ID!) {
@@ -46,9 +46,12 @@ const UPDATE_QUERY = gql`
 `;
 
 function Listing(props) {
+  const router = useRouter();
+
   var booking_slot_ids = [];
   const [bookingSlotId, setBookingSlotId] = useState([]);
   const [cartId, setCartId] = useState("");
+  const [bool, setBool] = useState(true);
 
   const [createLink] = useMutation(UPDATE_QUERY, {
     variables: {
@@ -74,8 +77,14 @@ function Listing(props) {
   const didMount = useDidMount();
 
   useEffect(() => {
-    if (data && data.user && data.user.cart) {
+    if (data && data.user && data.user.cart && data.user.cart.booking_slots) {
       setCartId(data.user.cart.id);
+
+      data.user.cart.booking_slots.map((res) => {
+        if (new Date(res.date) < new Date()) {
+          setBool(false);
+        }
+      });
     }
   }, [data]);
 
@@ -98,7 +107,12 @@ function Listing(props) {
   function cancelBooking(id) {
     window.setTimeout(() => {
       setBookingSlotId(booking_slot_ids.filter((slot_id) => slot_id != id));
-    });
+    }, 0);
+
+    window.setTimeout(() => {
+      window.location.hash = "#my_cart";
+      window.location.reload(true);
+    }, 0);
   }
 
   if (error) return "Error loading history";
@@ -128,11 +142,20 @@ function Listing(props) {
 
             <div className="btn-toolbar mb-2 mb-md-0">
               <div className="btn-group me-2">
-                <Link href="/student/checkout" className="btn">
-                  <a className="btn edit_btn">
-                    <b>Checkout</b>
-                  </a>
-                </Link>
+                <button
+                  className="btn edit_btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    if (bool) {
+                      router.push("/student/checkout");
+                    } else {
+                      alert("Can't checkout! One of your item is expired");
+                    }
+                  }}
+                >
+                  <b>Checkout</b>
+                </button>
               </div>
             </div>
           </div>
@@ -156,7 +179,11 @@ function Listing(props) {
               {searchQuery.map((res) => (
                 <tr
                   key={res.id}
-                  className={res.availability ? "text-dark" : "text-muted"}
+                  className={
+                    res.availability && new Date(res.date) >= new Date()
+                      ? "text-dark"
+                      : "text-muted"
+                  }
                 >
                   <td>
                     <span>
@@ -186,10 +213,21 @@ function Listing(props) {
                   </td>
                   <td
                     style={{
-                      color: res.availability ? "green" : "",
+                      color:
+                        res.availability && new Date(res.date) >= new Date()
+                          ? "green"
+                          : "",
                     }}
                   >
-                    <span>{res.availability ? "Available" : "Booked"}</span>
+                    <span>
+                      {res.availability &&
+                        new Date(res.date) >= new Date() &&
+                        "Available"}
+                      {res.availability &&
+                        new Date(res.date) < new Date() &&
+                        "Expired"}
+                      {!res.availability && "Booked"}
+                    </span>
                   </td>
                   <td>
                     <span>${calculatePrice(res.price)}</span>

@@ -1,9 +1,9 @@
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { useRouter } from "next/router";
 import { gql } from "apollo-boost";
 import { useState, useEffect, useContext } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import AppContext from "../../context/AppContext";
+import Head from "next/head";
 
 const QUERY = gql`
   query User($id: ID!) {
@@ -215,6 +215,15 @@ const checkout = () => {
     if (searchQuery.length != 0) {
       return (
         <>
+          <Head>
+            <title>Checkout | UOW Room Booking System</title>
+            <link rel="icon" href="/favicon.ico" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+          </Head>
+
           <div
             id="success_msg"
             className="container alert alert-success alert-dismissible fade show mt-5"

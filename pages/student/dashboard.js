@@ -1,12 +1,11 @@
-import RoomList from "../../components/RoomList";
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import AvailableRoom from "../../components/AvailableRoom";
-import BookedRoom from "../../components/BookedRoom";
 import History from "../../components/History";
 import ActiveBooking from "../../components/ActiveBooking";
 import MyCart from "../../components/MyCart";
+import Head from "next/head";
 
-function dashboard(props) {
+function dashboard() {
   const [query, updateQuery] = useState("");
 
   const ids = ["availableroom", "my_cart", "active_booking", "history"];
@@ -25,6 +24,12 @@ function dashboard(props) {
 
   return (
     <div className="container mt-4">
+      <Head>
+        <title>UOW Room Booking System</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
       <div className="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
         <div className="col">
           <button

@@ -4,23 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useState, useEffect, useContext } from "react";
-import { forgotPassword } from "../../lib/auth";
-import AppContext from "../../context/AppContext";
+import React, { useState, useContext } from "react";
+import { forgotPassword } from "../lib/auth";
+import AppContext from "../context/AppContext";
 
-function forgotPwd(props) {
-  //   const [data, updateData] = useState({ identifier: "", password: "" });
+function forgotPwd() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const router = useRouter();
   const appContext = useContext(AppContext);
-
-  //   useEffect(() => {
-  //     if (appContext.isAuthenticated) {
-  //       router.push("/"); // redirect if you're already logged in
-  //     }
-  //   }, []);
 
   function onChange(event) {
     setEmail(event.target.value);
@@ -29,7 +22,7 @@ function forgotPwd(props) {
   return (
     <>
       <Head>
-        <title>Student Login | UOW Room Booking System</title>
+        <title>Forgot Password | UOW Room Booking System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
@@ -77,9 +70,9 @@ function forgotPwd(props) {
           <div className="login-fb2 me-md-3 pt-3 pb-5 px-3 pt-md-5 px-md-5 overflow-hidden">
             <div className="mt-3 p-2 text-center text-light">
               <h2 className="display-5">Forgot Password?</h2>
-              <p className="lead">And an even wittier subheading.</p>
+              <p className="lead">Enter Details below!</p>
             </div>
-            {/* <div className="text-center">
+            <div className="text-center">
               {Object.entries(error).length !== 0 &&
                 error.constructor === Object &&
                 error.message.map((error) => {
@@ -94,7 +87,7 @@ function forgotPwd(props) {
                     </div>
                   );
                 })}
-            </div> */}
+            </div>
             <div className="shadow-sm mx-auto bg-form mb-3">
               <Form style={{ padding: "12px 16px" }}>
                 <Form.Group controlId="formBasicEmail">
@@ -138,7 +131,7 @@ function forgotPwd(props) {
               <div className="pl-3 z-1">
                 <p>
                   Do not have an account yet?&nbsp;
-                  <Link href="/student/register">Create Account</Link>
+                  <Link href="/contact">Create Account</Link>
                 </p>
               </div>
             </div>

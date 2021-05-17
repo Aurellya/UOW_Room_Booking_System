@@ -2,6 +2,7 @@ import AppContext from "../../context/AppContext";
 import { useContext, useState, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import Head from "next/head";
 
 const QUERY = gql`
   mutation UpdateUser(
@@ -114,6 +115,12 @@ const editProfile = () => {
 
   return (
     <>
+      <Head>
+        <title>Edit Profile | UOW Room Booking System</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
       <div
         id="success_msg"
         className="container alert alert-success alert-dismissible fade show mt-5"

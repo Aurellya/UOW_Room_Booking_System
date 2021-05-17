@@ -37,7 +37,7 @@ const UPDATE_QUERY = gql`
   }
 `;
 
-const login = (props) => {
+const login = () => {
   const [data, updateData] = useState({
     id: "",
     role: "student",
@@ -50,7 +50,6 @@ const login = (props) => {
   const [tempRole, setTempRole] = useState("");
   const router = useRouter();
   const appContext = useContext(AppContext);
-
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -116,7 +115,7 @@ const login = (props) => {
   return (
     <>
       <Head>
-        <title>Admin Login | UOW Room Booking System</title>
+        <title>Login Page| UOW Room Booking System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 

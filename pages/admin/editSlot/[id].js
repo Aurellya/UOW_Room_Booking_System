@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
+import Head from "next/head";
 
 const GET_ROOM_INFO = gql`
   query BookingSlot($id: ID!) {
@@ -203,6 +204,15 @@ const editSlot = () => {
     if (searchQuery.length != 0) {
       return (
         <>
+          <Head>
+            <title>Edit Slot | UOW Room Booking System</title>
+            <link rel="icon" href="/favicon.ico" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+          </Head>
+
           <div
             id="success_msg"
             className="container alert alert-success alert-dismissible fade show mt-5"
@@ -243,14 +253,13 @@ const editSlot = () => {
             <h4 className="mb-1 ">Update Slot [ID: #{bookingSlot.id}]</h4>
             <hr className="mb-4" />
             <form id="launch_room_form">
-              0
               <div className="row">
                 <div className="form-group col-3">
                   <label htmlFor="room">Room Number</label>
                   <select
                     className="form-control"
                     id="room"
-                    defaultValue={bookingSlot.room.room_no}
+                    defaultValue={bookingSlot.room.id}
                   >
                     <option value="DEFAULT" disabled>
                       Room Number

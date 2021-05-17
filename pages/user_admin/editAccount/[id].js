@@ -1,8 +1,8 @@
-import AppContext from "../../../context/AppContext";
-import { useContext, useState, useEffect } from "react";
+import { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const GET_USER_INFO = gql`
   query User($id: ID!) {
@@ -139,6 +139,11 @@ const editAccount = () => {
     const { user } = data;
     return (
       <>
+        <Head>
+          <title>Edit User | UOW Room Booking System</title>
+          <link rel="icon" href="/favicon.ico" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
         <div
           id="success_msg"
           className="container alert alert-success alert-dismissible fade show mt-5"
@@ -155,7 +160,6 @@ const editAccount = () => {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
         <div
           id="warning_msg"
           className="container alert alert-danger alert-dismissible fade show mt-5"
@@ -173,7 +177,6 @@ const editAccount = () => {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
         <div
           id="conf_msg"
           className="container alert alert-warning alert-dismissible fade show mt-5"
@@ -222,7 +225,6 @@ const editAccount = () => {
             </div>
           </div>
         </div>
-
         <div className="container col-xxl-8 px-5 py-5 my-5 rounded-3 border shadow">
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
             <h4 className="mb-1">

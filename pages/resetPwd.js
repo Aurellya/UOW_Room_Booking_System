@@ -3,12 +3,11 @@ import Button from "react-bootstrap/Button";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import React, { useState, useEffect, useContext } from "react";
-import { resetPassword } from "../../lib/auth";
-import AppContext from "../../context/AppContext";
+import React, { useState, useContext } from "react";
+import { resetPassword } from "../lib/auth";
+import AppContext from "../context/AppContext";
 
-function resetPwd(props) {
+function resetPwd() {
   const [data, updateData] = useState({
     code: "",
     password: "",
@@ -16,19 +15,11 @@ function resetPwd(props) {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const router = useRouter();
   const appContext = useContext(AppContext);
-
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
-
-  // useEffect(() => {
-  //   if (appContext.isAuthenticated) {
-  //     router.push("/"); // redirect if you're already logged in
-  //   }
-  // }, []);
 
   function onChange(event) {
     updateData({ ...data, [event.target.name]: event.target.value });
@@ -37,7 +28,7 @@ function resetPwd(props) {
   return (
     <>
       <Head>
-        <title>Student Login | UOW Room Booking System</title>
+        <title>Reset Password | UOW Room Booking System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
@@ -85,7 +76,7 @@ function resetPwd(props) {
           <div className="login-fb2 me-md-3 pt-3 pb-5 px-3 pt-md-5 px-md-5 overflow-hidden">
             <div className="mt-3 p-2 text-center text-light">
               <h2 className="display-5">Reset Password</h2>
-              <p className="lead">And an even wittier subheading.</p>
+              <p className="lead">Check your spam folder!</p>
             </div>
             <div className="text-center">
               {Object.entries(error).length !== 0 &&
@@ -172,10 +163,10 @@ function resetPwd(props) {
               </Form>
               <hr className="ml-0 mt-2" />
               <div className="pl-3 z-1">
-                <Link href="/student/forgotPwd">Not getting email?</Link>
+                <Link href="/forgotPwd">Not getting email?</Link>
                 <p>
                   Do not have an account yet?&nbsp;
-                  <Link href="/student/register">Create Account</Link>
+                  <Link href="/contact">Create Account</Link>
                 </p>
               </div>
             </div>

@@ -4,6 +4,7 @@ import { CgCalendarDates } from "react-icons/cg";
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import Head from "next/head";
 
 const QUERY = gql`
   {
@@ -159,6 +160,15 @@ const launchRoom = () => {
     if (searchQuery.length != 0) {
       return (
         <>
+          <Head>
+            <title>Launch Room | UOW Room Booking System</title>
+            <link rel="icon" href="/favicon.ico" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+          </Head>
+
           <div
             id="success_msg"
             className="container alert alert-success alert-dismissible fade show mt-5"
