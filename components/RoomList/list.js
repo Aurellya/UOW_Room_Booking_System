@@ -10,6 +10,13 @@ const QUERY = gql`
       block
       capacity
       promo_code
+      booking_slots {
+        id
+        availability
+        booking_room {
+          id
+        }
+      }
     }
   }
 `;
@@ -18,7 +25,30 @@ const QUERY_DELETE = gql`
   mutation DeleteRoom($id: ID!) {
     deleteRoom(input: { where: { id: $id } }) {
       room {
-        room_no
+        id
+      }
+    }
+  }
+`;
+
+const QUERY_DELETE2 = gql`
+  mutation DeleteBookingSlot($id: ID!) {
+    deleteBookingSlot(input: { where: { id: $id } }) {
+      bookingSlot {
+        id
+        room {
+          room_no
+        }
+      }
+    }
+  }
+`;
+
+const QUERY_DELETE3 = gql`
+  mutation DeleteBookingRoom($id: ID!) {
+    deleteBookingRoom(input: { where: { id: $id } }) {
+      bookingRoom {
+        id
       }
     }
   }
@@ -28,6 +58,14 @@ function Listing(props) {
   const { loading, error, data } = useQuery(QUERY);
 
   const [del_item, { del_error, del_loading }] = useMutation(QUERY_DELETE, {
+    refetchQueries: [{ query: QUERY }],
+  });
+
+  const [del_item2, { del_error2, del_loading2 }] = useMutation(QUERY_DELETE2, {
+    refetchQueries: [{ query: QUERY }],
+  });
+
+  const [del_item3, { del_error3, del_loading3 }] = useMutation(QUERY_DELETE3, {
     refetchQueries: [{ query: QUERY }],
   });
 
@@ -84,13 +122,48 @@ function Listing(props) {
                     <button
                       aria-hidden="true"
                       className="deleteItem_btn"
-                      onClick={() =>
-                        del_item({
-                          variables: {
-                            id: res.id,
-                          },
-                        })
-                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (
+                          confirm("Are you sure want to delete this?") == true
+                        ) {
+                          window.setTimeout(() => {
+                            del_item({
+                              variables: {
+                                id: res.id,
+                              },
+                            });
+                          }, 0);
+
+                          window.setTimeout(() => {
+                            res.booking_slots.map((item) => {
+                              del_item2({
+                                variables: {
+                                  id: item.id,
+                                },
+                              });
+
+                              if (!item.availability) {
+                                del_item3({
+                                  variables: {
+                                    id: item.booking_room.id,
+                                  },
+                                });
+                              }
+                            });
+                          }, 0);
+
+                          window.setTimeout(() => {
+                            window.location.replace("/admin/dashboard");
+                          }, 0);
+
+                          window.setTimeout(() => {
+                            return true;
+                          }, 0);
+                        } else {
+                          return false;
+                        }
+                      }}
                       disabled={del_loading}
                     >
                       &times;

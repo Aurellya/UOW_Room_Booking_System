@@ -169,17 +169,35 @@ function Listing(props) {
                       disabled={del_loading}
                       onClick={(e) => {
                         e.preventDefault();
-                        cancelBooking(res.booking_slot.id);
-                        del_item({
-                          variables: {
-                            id: res.id,
-                          },
-                          refetchQueries: () => [
-                            { query: QUERY, variables: { id: props.id } },
-                          ],
-                        });
-                        window.location.hash = "#active_booking";
-                        window.location.reload();
+                        if (
+                          confirm("Are you sure want to cancel this?") == true
+                        ) {
+                          window.setTimeout(() => {
+                            cancelBooking(res.booking_slot.id);
+                          }, 0);
+
+                          window.setTimeout(() => {
+                            del_item({
+                              variables: {
+                                id: res.id,
+                              },
+                              refetchQueries: () => [
+                                { query: QUERY, variables: { id: props.id } },
+                              ],
+                            });
+                          }, 0);
+
+                          window.setTimeout(() => {
+                            window.location.hash = "#active_booking";
+                            window.location.reload();
+                          }, 0);
+
+                          window.setTimeout(() => {
+                            return true;
+                          }, 0);
+                        } else {
+                          return false;
+                        }
                       }}
                     >
                       Cancel

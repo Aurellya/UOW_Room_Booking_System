@@ -127,13 +127,27 @@ function Listing(props) {
                     <button
                       aria-hidden="true"
                       className="deleteItem_btn"
-                      onClick={() =>
-                        del_item({
-                          variables: {
-                            id: res.id,
-                          },
-                        })
-                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+
+                        if (
+                          confirm("Are you sure want to delete this?") == true
+                        ) {
+                          window.setTimeout(() => {
+                            del_item({
+                              variables: {
+                                id: res.id,
+                              },
+                            });
+                          }, 0);
+
+                          window.setTimeout(() => {
+                            return true;
+                          }, 0);
+                        } else {
+                          return false;
+                        }
+                      }}
                       disabled={del_loading}
                       style={{
                         display: props.staff == "staff" ? "block" : "none",

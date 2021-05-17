@@ -70,6 +70,7 @@ const launchRoom = () => {
       createLink();
       document.getElementById("launch_room_form").reset();
       setStartDate("");
+      remove_notif("warning_msg");
       var ele = document.getElementById("success_msg");
       ele.style.display = "block";
     }
@@ -145,7 +146,9 @@ const launchRoom = () => {
 
   function remove_notif(el) {
     let x = document.getElementById(el);
-    x.style.display = "none";
+    if (x) {
+      x.style.display = "none";
+    }
   }
 
   const { loading, error, data } = useQuery(QUERY);

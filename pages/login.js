@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import React, { useState, useEffect, useContext } from "react";
 import { loginUser } from "../lib/auth";
 import AppContext from "../context/AppContext";
@@ -48,18 +48,18 @@ const login = () => {
   const [error, setError] = useState(false);
   const [errormsg, setErrormsg] = useState(false);
   const [tempRole, setTempRole] = useState("");
-  const router = useRouter();
+  // const router = useRouter();
   const appContext = useContext(AppContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  useEffect(() => {
-    if (appContext.isAuthenticated) {
-      router.push("/"); // redirect if you're already logged in
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (appContext.isAuthenticated) {
+  //     router.push("/"); // redirect if you're already logged in
+  //   }
+  // }, []);
 
   const { loading: loading2, error: error2, data: data2, refetch } = useQuery(
     QUERY,

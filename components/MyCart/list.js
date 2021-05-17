@@ -237,7 +237,19 @@ function Listing(props) {
                       className="btn btn-sm btn-danger"
                       onClick={(e) => {
                         e.preventDefault();
-                        cancelBooking(res.id);
+
+                        if (
+                          confirm("Are you sure want to delete this?") == true
+                        ) {
+                          window.setTimeout(() => {
+                            cancelBooking(res.id);
+                          }, 0);
+                          window.setTimeout(() => {
+                            return true;
+                          }, 0);
+                        } else {
+                          return false;
+                        }
                       }}
                     >
                       <b>&times;</b>
