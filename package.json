@@ -1,6 +1,7 @@
 {
   "name": "booking-system",
   "version": "0.1.0",
+  "author": "Aurellya <aurellyagho25@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "next dev",

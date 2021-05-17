@@ -361,3 +361,13 @@ thead {
   transition-property: opacity;
   text-decoration: none;
 }
+
+table td {
+  vertical-align: middle;
+  position: relative;
+}
+
+table td span {
+  display: inline-block;
+  vertical-align: middle;
+}

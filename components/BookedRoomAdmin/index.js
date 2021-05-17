@@ -146,7 +146,13 @@ function BookedRoomAdmin(props) {
             </button>
           </div>
           <div className="col-auto">
-            <button type="reset" className="btn filter-btn-sm">
+            <button
+              type="reset"
+              className="btn filter-btn-sm"
+              onClick={() => {
+                setStartDate("");
+              }}
+            >
               <BiRefresh style={{ marginBottom: "2px" }} fontSize="22" />
             </button>
           </div>

@@ -61,13 +61,17 @@ function AvailableRoom(props) {
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom">
         {/* launched */}
         <h1 className="h2">Available Room</h1>
-        <div className="btn-toolbar mb-2 mb-md-0">
-          <div className="btn-group me-2">
-            <Link href="/admin/launchRoom" className="btn btn-sm button-crud">
-              <a className="btn btn-sm button-crud">Launch Room</a>
-            </Link>
+        {props.staff ? (
+          <div className="btn-toolbar mb-2 mb-md-0">
+            <div className="btn-group me-2">
+              <Link href="/admin/launchRoom" className="btn btn-sm button-crud">
+                <a className="btn btn-sm button-crud">Launch Room</a>
+              </Link>
+            </div>
           </div>
-        </div>
+        ) : (
+          ""
+        )}
       </div>
       <form className="filter-box">
         <div className="form-row align-items-center">
@@ -108,6 +112,7 @@ function AvailableRoom(props) {
             </label>
             <div className="input-group">
               <DatePicker
+                id="dp"
                 className="form-control"
                 minDate={new Date()}
                 selected={startDate}
@@ -144,7 +149,13 @@ function AvailableRoom(props) {
           </div>
 
           <div className="col-auto">
-            <button type="reset" className="btn filter-btn-sm">
+            <button
+              type="reset"
+              className="btn filter-btn-sm"
+              onClick={() => {
+                setStartDate("");
+              }}
+            >
               <BiRefresh style={{ marginBottom: "2px" }} fontSize="22" />
             </button>
           </div>

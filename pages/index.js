@@ -195,7 +195,7 @@ export default function Home() {
           <div className="row flex-lg-row align-items-center g-5 py-5">
             <div className="col-10 col-sm-8 col-lg-6">
               <img
-                src="./test4.jpg"
+                src="./student.jpg"
                 className="d-block mx-lg-auto img-fluid"
                 alt="student"
                 width="500"

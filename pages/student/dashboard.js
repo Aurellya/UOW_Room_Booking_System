@@ -1,13 +1,27 @@
-// import React from "react";
 import RoomList from "../../components/RoomList";
 import React, { useState, useContext } from "react";
 import AvailableRoom from "../../components/AvailableRoom";
 import BookedRoom from "../../components/BookedRoom";
-// import AppContext from "../../context/AppContext";
+import History from "../../components/History";
+import ActiveBooking from "../../components/ActiveBooking";
+import MyCart from "../../components/MyCart";
 
 function dashboard(props) {
-  // const { user, setUser } = useContext(AppContext);
   const [query, updateQuery] = useState("");
+
+  const ids = ["availableroom", "my_cart", "active_booking", "history"];
+
+  function filter_cat(id) {
+    var x;
+
+    for (x in ids) {
+      if (ids[x] != id) {
+        document.getElementById(ids[x]).style.display = "none";
+      } else {
+        document.getElementById(ids[x]).style.display = "block";
+      }
+    }
+  }
 
   return (
     <div className="container mt-4">
@@ -15,10 +29,10 @@ function dashboard(props) {
         <div className="col">
           <button
             className="btn-filter w-100 card card-cover overflow-hidden text-white rounded-5 shadow-lg"
-            onClick={() => filter_cat("all")}
+            onClick={() => filter_cat("availableroom")}
           >
             <div className="w-100 d-flex flex-column h-100 text-white text-shadow-1 text-center">
-              <h3 className="display-6 lh-1 fw-bold my-auto">Show All</h3>
+              <h3 className="display-6 lh-1 fw-bold my-auto">Available Room</h3>
             </div>
           </button>
         </div>
@@ -26,10 +40,10 @@ function dashboard(props) {
         <div className="col">
           <button
             className="btn-filter w-100 card card-cover overflow-hidden text-white rounded-5 shadow-lg"
-            onClick={() => filter_cat("availableroom")}
+            onClick={() => filter_cat("my_cart")}
           >
             <div className="w-100 d-flex flex-column h-100 text-white text-shadow-1 text-center">
-              <h3 className="display-6 lh-1 fw-bold my-auto">Available Room</h3>
+              <h3 className="display-6 lh-1 fw-bold my-auto">My Cart</h3>
             </div>
           </button>
         </div>
@@ -56,14 +70,21 @@ function dashboard(props) {
           </button>
         </div>
       </div>
-      <div id="roomlist" className="mb-5">
+
+      <div id="availableroom" className="mb-5">
         <AvailableRoom search={query} btnText="Book" staff=""></AvailableRoom>
       </div>
 
-      <div id="bookedroom">
-        <h1 className="h2">My Booked Room</h1>
-        <hr />
-        <h2 className="mb-5">None</h2>
+      <div id="my_cart" className="mb-5">
+        <MyCart />
+      </div>
+
+      <div id="active_booking" className="mb-5">
+        <ActiveBooking />
+      </div>
+
+      <div id="history" className="mb-5">
+        <History />
       </div>
     </div>
   );

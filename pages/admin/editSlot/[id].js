@@ -243,13 +243,14 @@ const editSlot = () => {
             <h4 className="mb-1 ">Update Slot [ID: #{bookingSlot.id}]</h4>
             <hr className="mb-4" />
             <form id="launch_room_form">
+              0
               <div className="row">
                 <div className="form-group col-3">
                   <label htmlFor="room">Room Number</label>
                   <select
                     className="form-control"
                     id="room"
-                    defaultValue={bookingSlot.room.id}
+                    defaultValue={bookingSlot.room.room_no}
                   >
                     <option value="DEFAULT" disabled>
                       Room Number
@@ -313,7 +314,6 @@ const editSlot = () => {
                   />
                 </div>
               </div>
-
               <div>
                 <button
                   type="submit"

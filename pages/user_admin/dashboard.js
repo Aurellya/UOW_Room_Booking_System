@@ -89,9 +89,6 @@ function dashboard(props) {
       </div>
 
       <div id="create_account" style={{ display: "none" }}>
-        {/* <h1 className="h2">Create New Account</h1>
-        <hr />
-        <h2 className="mb-5">None</h2> */}
         <CreateAccount />
       </div>
     </div>
