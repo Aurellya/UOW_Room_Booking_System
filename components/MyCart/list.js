@@ -150,7 +150,9 @@ function Listing(props) {
                     if (bool) {
                       router.push("/student/checkout");
                     } else {
-                      alert("Can't checkout! One of your item is expired");
+                      alert(
+                        "Can't checkout! One of your item is expired, remove it!"
+                      );
                     }
                   }}
                 >
@@ -239,7 +241,9 @@ function Listing(props) {
                         e.preventDefault();
 
                         if (
-                          confirm("Are you sure want to delete this?") == true
+                          confirm(
+                            "Are you sure want to remove this from your cart?"
+                          ) == true
                         ) {
                           window.setTimeout(() => {
                             cancelBooking(res.id);

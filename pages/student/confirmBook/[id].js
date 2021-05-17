@@ -339,7 +339,10 @@ const confirmBook = () => {
                         <li>${bookingSlot.price}</li>
                         <br />
                         <li style={{ color: "red" }}>
-                          - ${((bookingSlot.price * 3) / 100).toFixed(2)}
+                          - $
+                          {parseFloat(
+                            ((bookingSlot.price * 3) / 100).toFixed(2)
+                          ).toFixed(2)}
                         </li>
                       </ul>
                     </div>
@@ -348,8 +351,12 @@ const confirmBook = () => {
                   <hr />
                   <h5 className="text-right">
                     $
-                    {bookingSlot.price -
-                      ((bookingSlot.price * 3) / 100).toFixed(2)}
+                    {parseFloat(
+                      (
+                        bookingSlot.price -
+                        ((bookingSlot.price * 3) / 100).toFixed(2)
+                      ).toFixed(2)
+                    )}
                   </h5>
                   <br />
                   <br />
