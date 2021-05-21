@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rooms",
+  "info": {
+    "name": "room",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "room_no": {
+      "type": "string"
+    },
+    "block": {
+      "type": "string"
+    },
+    "capacity": {
+      "type": "biginteger"
+    },
+    "booking_slots": {
+      "via": "room",
+      "collection": "booking-slot"
+    },
+    "promo_code": {
+      "type": "string"
+    }
+  }
+}

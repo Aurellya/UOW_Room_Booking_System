@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/booking-slots",
+      "handler": "booking-slot.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/booking-slots/count",
+      "handler": "booking-slot.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/booking-slots/:id",
+      "handler": "booking-slot.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/booking-slots",
+      "handler": "booking-slot.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/booking-slots/:id",
+      "handler": "booking-slot.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/booking-slots/:id",
+      "handler": "booking-slot.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

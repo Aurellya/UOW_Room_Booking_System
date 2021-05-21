@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "booking_slots",
+  "info": {
+    "name": "booking_slot",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "room": {
+      "model": "room",
+      "via": "booking_slots"
+    },
+    "date": {
+      "type": "date"
+    },
+    "time_start": {
+      "type": "time"
+    },
+    "time_end": {
+      "type": "time"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "availability": {
+      "type": "boolean"
+    },
+    "booking_room": {
+      "via": "booking_slot",
+      "model": "booking-room"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "booking_rooms",
+  "info": {
+    "name": "Booking_room",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "booking_slot": {
+      "model": "booking-slot",
+      "via": "booking_room"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "booking_rooms"
+    }
+  }
+}
