@@ -1,6 +1,19 @@
 # UOW Room Booking System
 [CSIT214 Assignment] Developing a room booking system for UOW.
 
+## Table of Contents
+- [About](#about-project)
+  - [User Role](#user-role)
+  - [Technologies Used](#technologies-used)
+- [Preview](#preview)
+  - [Home Page](#home-page) 
+  - [Login Page](#login-page) 
+  - [User Admin - Dashboard](#user-admin-dashboard) 
+  - [User Admin - Create Account Form](#user-admin-create-account-form) 
+  - [Staff Dashboard](#staff-dashboard) 
+  - [Student - Dashboard](#student-dashboard) 
+  - [Student - Room Preview](#student-room-preview) 
+
 ## About Project: 
 Creating a Working Prototype for Room Booking System for UOW.
 
@@ -57,19 +70,19 @@ Creating a Working Prototype for Room Booking System for UOW.
 ### User Profile
  <img alt="github" width="600px" src="https://user-images.githubusercontent.com/58356073/119112195-6f2b6200-ba56-11eb-9ec8-853c5e0f5d8d.png" /> 
 
-### User Admin - Dashboard
+### User Admin [Dashboard]
  <img alt="github" width="600px" src="https://user-images.githubusercontent.com/58356073/119111828-080dad80-ba56-11eb-9f2c-a44aa4d3d8bd.png" /> 
 
-### User Admin - Create Account Form
+### User Admin [Create Account Form]
  <img alt="github" width="550px" src="https://user-images.githubusercontent.com/58356073/119111950-270c3f80-ba56-11eb-97bf-fca5b1992132.png" /> 
 
-### Staff - Dashboard
+### Staff [Dashboard]
  <img alt="github" width="600px" src="https://user-images.githubusercontent.com/58356073/119112739-fe387a00-ba56-11eb-8458-14d159a79fff.png" /> 
 
-### Student - Dashboard
+### Student [Dashboard]
  <img alt="github" width="600px" src="https://user-images.githubusercontent.com/58356073/119113033-435cac00-ba57-11eb-8f63-1796f1e34a35.png" /> 
 
-### Student - Room Preview
+### Student [Room Preview]
  <img alt="github" width="600px" src="https://user-images.githubusercontent.com/58356073/119113156-64250180-ba57-11eb-8eac-5315a5d61139.png" /> 
 
  
