@@ -48,10 +48,10 @@ export default function Home() {
       <div className=" col-xxl-8 px-4 py-5 text-light dark-background">
         <div className="container">
           <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div className="col-10 col-sm-8 col-lg-6">
+            <div className="col-10 col-sm-8 col-lg-6 container px-5">
               <img
-                src="./test.png"
-                className="d-block mx-lg-auto img-fluid"
+                src="./preview.png"
+                className="d-block mx-lg-auto img-fluid rounded"
                 alt="Bootstrap Themes"
                 width="700"
                 height="500"
@@ -179,7 +179,7 @@ export default function Home() {
         <div className="overflow-hidden" style={{ maxHeight: "350px" }}>
           <div className="container px-5">
             <img
-              src="test2.png"
+              src="preview2.png"
               className="img-fluid border rounded-3 shadow-lg mb-4"
               alt="Preview"
               width="700"
