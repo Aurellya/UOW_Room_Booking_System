@@ -110,73 +110,82 @@ function Listing(props) {
       return (
         <div>
           <div className="row row-cols-1 row-cols-md-3 mb-5 text-center">
-            {searchQuery.map((res) => (
-              <div className="col" key={res.id}>
-                <div
-                  className="card mb-4 rounded-3 shadow-sm"
-                  style={{
-                    borderColor: "#001641",
-                  }}
-                >
-                  <div
-                    className="card-header py-3 text-white "
-                    style={{
-                      backgroundColor: "#001641",
-                      borderColor: "#001641",
-                    }}
-                  >
-                    <h4 className="my-0 fw-normal">Booking ID: {res.id}</h4>
+            {searchQuery.map((res) => {
+              // show only non-expired item
+              if (getStatus(res.booking_slot.date)) {
+                return (
+                  <div className="col" key={res.id}>
+                    <div
+                      className="card mb-4 rounded-3 shadow-sm"
+                      style={{
+                        borderColor: "#001641",
+                      }}
+                    >
+                      <div
+                        className="card-header py-3 text-white "
+                        style={{
+                          backgroundColor: "#001641",
+                          borderColor: "#001641",
+                        }}
+                      >
+                        <h4 className="my-0 fw-normal">Booking ID: {res.id}</h4>
+                      </div>
+                      <div className="card-body">
+                        <h1 className="card-title pricing-card-title">
+                          {res.booking_slot.room.room_no}
+                        </h1>
+                        <ul className="list-unstyled mt-3 mb-3">
+                          <li style={{ color: "red" }}>
+                            <b>Price: ${res.booking_slot.price}</b>
+                          </li>
+                          <li>Block: {res.booking_slot.room.block}</li>
+                          <li>Capacity: {res.booking_slot.room.capacity}</li>
+                          <li>Date: {res.booking_slot.date}</li>
+                          <li>
+                            Time: {res.booking_slot.time_start.substring(0, 5)}{" "}
+                            - {res.booking_slot.time_end.substring(0, 5)}
+                          </li>
+                          <li>
+                            Promo code: {res.booking_slot.room.promo_code}
+                          </li>
+                          <li>
+                            Status:{" "}
+                            <span
+                              style={{
+                                color: getStatus(res.booking_slot.date)
+                                  ? "green"
+                                  : "red",
+                              }}
+                            >
+                              <b>
+                                {getStatus(res.booking_slot.date)
+                                  ? "Active"
+                                  : "Expired"}
+                              </b>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className="card-footer text-white "
+                        style={{
+                          backgroundColor: "#001641",
+                          borderColor: "#001641",
+                        }}
+                      >
+                        <h4 className="mt-3 mb-3 fw-normal">Booked by:</h4>
+                        Username: {res.user.username
+                          ? res.user.username
+                          : "-"}{" "}
+                        <br />
+                        Email: {res.user.email ? res.user.email : "-"} <br />
+                        <br />
+                      </div>
+                    </div>
                   </div>
-                  <div className="card-body">
-                    <h1 className="card-title pricing-card-title">
-                      {res.booking_slot.room.room_no}
-                    </h1>
-                    <ul className="list-unstyled mt-3 mb-3">
-                      <li style={{ color: "red" }}>
-                        <b>Price: ${res.booking_slot.price}</b>
-                      </li>
-                      <li>Block: {res.booking_slot.room.block}</li>
-                      <li>Capacity: {res.booking_slot.room.capacity}</li>
-                      <li>Date: {res.booking_slot.date}</li>
-                      <li>
-                        Time: {res.booking_slot.time_start.substring(0, 5)} -{" "}
-                        {res.booking_slot.time_end.substring(0, 5)}
-                      </li>
-                      <li>Promo code: {res.booking_slot.room.promo_code}</li>
-                      <li>
-                        Status:{" "}
-                        <span
-                          style={{
-                            color: getStatus(res.booking_slot.date)
-                              ? "green"
-                              : "red",
-                          }}
-                        >
-                          <b>
-                            {getStatus(res.booking_slot.date)
-                              ? "Active"
-                              : "Expired"}
-                          </b>
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div
-                    className="card-footer text-white "
-                    style={{
-                      backgroundColor: "#001641",
-                      borderColor: "#001641",
-                    }}
-                  >
-                    <h4 className="mt-3 mb-3 fw-normal">Booked by:</h4>
-                    Username: {res.user.username ? res.user.username : "-"}{" "}
-                    <br />
-                    Email: {res.user.email ? res.user.email : "-"} <br />
-                    <br />
-                  </div>
-                </div>
-              </div>
-            ))}
+                );
+              }
+            })}
           </div>
         </div>
       );

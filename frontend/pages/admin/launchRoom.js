@@ -244,7 +244,13 @@ const launchRoom = () => {
               <div className="row">
                 <div className="form-group col-3">
                   <label htmlFor="date">Date</label>
-                  <div className="input-group">
+                  <div
+                    className="input-group"
+                    style={{
+                      flexWrap: "no-wrap!important",
+                      WebkitFlexWrap: "nowrap",
+                    }}
+                  >
                     <DatePicker
                       className="form-control"
                       selected={startDate}

@@ -61,12 +61,14 @@ const login = () => {
   //   }
   // }, []);
 
-  const { loading: loading2, error: error2, data: data2, refetch } = useQuery(
-    QUERY,
-    {
-      variables: { email: data.identifier },
-    }
-  );
+  const {
+    loading: loading2,
+    error: error2,
+    data: data2,
+    refetch,
+  } = useQuery(QUERY, {
+    variables: { email: data.identifier },
+  });
 
   useEffect(() => {
     refetch();
